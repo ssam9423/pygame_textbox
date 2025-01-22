@@ -4,38 +4,44 @@ This is a class to create textboxes in Pygame.
 
 ## Initializing a Textbox - Parameters and Variables
 To initialize a Textbox, the following are required:
-- `screen`: (`pygame.surface.Surface` object) surface on which the Textbox is displayed
+| Parameter | Type                            | Description                               |
+|-----------|---------------------------------|-------------------------------------------|
+|`screen`   | `pygame.surface.Surface`        | surface on which the Textbox is displayed |
 
 The other parameters are optional:
-- `name`: (string) text desplayed in the Textbox when empty and not clicked on
-- `x_pos`: (int) x-position of the Textbox
-- `y_pos`: (int) y-position of the Textbox
-- `cursor_width`: (int) width of the cursor when typing in the Textbox
-- `b_radius`: (int) radius of Button corners - for rounded corners
-- `bg_color`: (tuple) background color of the Textbox
-- `t_color`: (tuple) text color of the Textbox
-- `empty_t_color`: (tuple) text color of the Textbox when empty and not clicked on
-- `font_name`: (string) name of font for Textbox text
-- `font_size`: (int) size of font for Textbox text
-- `width`: (int) width of Textbox
-- `height`: (int) height of Textbox
-- `spacing_factor`: (int) factor determining the spacing size between the text on the Textbox and the Textbox, this is based on the height of the Textbox
-- `static_size`: (Boolean) determines if the size of the button adjusts with a change in screen size
-- `value`: (string) the initial value in the Textbox
-- `on`: (Boolean) determines if the Textbox allows user to input text. When initializing, used to determine if user can input text when the program starts
+| Parameter      | Type      | Description                                                                                                                       |
+|----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
+|`name`          | `string`  | text desplayed in the Textbox when empty and not clicked on                                                                       |
+|`x_pos`         | `int`     | x-position of the Textbox                                                                                                         |
+|`y_pos`         | `int`     | y-position of the Textbox                                                                                                         |
+|`cursor_width`  | `int`     | width of the cursor when typing in the Textbox                                                                                    |
+|`b_radius`      | `int`     | radius of Button corners - for rounded corners                                                                                    |
+|`bg_color`      | `tuple`   | background color of the Textbox                                                                                                   |
+|`t_color`       | `tuple`   | text color of the Textbox                                                                                                         |
+|`empty_t_color` | `tuple`   | text color of the Textbox when empty and not clicked on                                                                           |
+|`font_name`     | `string`  | name of font for Textbox text                                                                                                     |
+|`font_size`     | `int`     | size of font for Textbox text                                                                                                     |
+|`width`         | `int`     | width of Textbox                                                                                                                  |
+|`height`        | `int`     | height of Textbox                                                                                                                 |
+|`spacing_factor`| `int`     | factor determining the spacing size between the text on the Textbox and the Textbox (based on `height`)                           |
+|`static_size`   | `Boolean` | determines if the size of the button adjusts with a change in screen size                                                         |
+|`value`         | `string`  | the initial value in the Textbox                                                                                                  |
+|`on`            | `Boolean` | determines if the Textbox allows user to input text (at initialization, determines if user can input text when the program starts |
 
 ## Functions
 The Textbox class has multiple functions:
-- `show()`: this function takes in a mouse position `event.pos` and draws Textbox and appropriate text depending on if the Textbox is `on`.
-- `clear(mouse_pos)`: this function clears the `value` of the Textbox.
-- `tb_click()`: this function determines whether a Textbox should be `on` based on where the user clicks (inside or outside the Textbox).
-- `get_value()`: this function returns the `value` of the Textbox
-- `update_screen(screen)`: this funtion takes in a `pygame.surface.Surface` object and updates screen on which the Textbox is displayed on. If `static_size` is `False`, the Textbox's `width` and `height` are updated as well.
-- `auto_font_size()`: this function updates the font size so that the text on the Textbox fits within the Textbox according to the Textbox's `spacing`
-- `update_spacing(new_spacing)`: this function takes in an integer as the new `spacing_factor` and updates the `spacing`
-- `get_size_offset()`: this function returns a pair of integers representing the offset from the Textbox's center
-- `get_size()`: this function returns a pair of integers representing the `width` and `height` of the Textbox
-- `get_font_size()`: this function returns a pair or integers representing the width and height of the text on the Textbox
+| Function Name               | Parameter Type                  | Description                                                           |
+|-----------------------------|---------------------------------|-----------------------------------------------------------------------|
+|`show(`event.pos`)`          | `tuple`                         |draws Textbox and appropriate text depending on if the Textbox is `on`.|
+|`clear(mouse_pos)`           | `tuple`                         | this function clears the `value` of the Textbox.                      |
+|`tb_click()`                 |                                 | this function determines whether a Textbox should be `on` based on where the user clicks (inside or outside the Textbox). |
+|`get_value()`                |                                 | this function returns the `value` of the Textbox
+|`update_screen(screen)`      | `pygame.surface.Surface`        | this funtion updates screen on which the Textbox is displayed on. If `static_size` is `False`, the Textbox's `width` and `height` are updated as well. |
+|`auto_font_size()`           |                                 | this function updates the font size so that the text on the Textbox fits within the Textbox according to the Textbox's `spacing`|
+|`update_spacing(new_spacing)`| `int`                           | this function takes in an integer as the new `spacing_factor` and updates the `spacing`|
+|`get_size_offset()`          |                                 | this function returns a pair of integers representing the offset from the Textbox's center |
+|`get_size()`                 |                                 | this function returns a pair of integers representing the `width` and `height` of the Textbox |
+|`get_font_size()`            |                                 | this function returns a pair or integers representing the width and height of the text on the Textbox |
 
 
 ## Example Code
