@@ -33,8 +33,8 @@ The Textbox class has multiple functions:
 | Function Name               | Parameter Type                  | Description                                                           |
 |-----------------------------|---------------------------------|-----------------------------------------------------------------------|
 |`show(`event.pos`)`          | `tuple`                         |draws Textbox and appropriate text depending on if the Textbox is `on`.|
-|`clear(mouse_pos)`           | `tuple`                         | this function clears the `value` of the Textbox.                      |
-|`tb_click()`                 |                                 | this function determines whether a Textbox should be `on` based on where the user clicks (inside or outside the Textbox). |
+|`clear()`                    |                                 | this function clears the `value` of the Textbox.                      |
+|`tb_click(mouse_pos)`        | `tuple`                         | this function determines whether a Textbox should be `on` based on where the user clicks (inside or outside the Textbox). |
 |`get_value()`                |                                 | this function returns the `value` of the Textbox
 |`update_screen(screen)`      | `pygame.surface.Surface`        | this funtion updates screen on which the Textbox is displayed on. If `static_size` is `False`, the Textbox's `width` and `height` are updated as well. |
 |`auto_font_size()`           |                                 | this function updates the font size so that the text on the Textbox fits within the Textbox according to the Textbox's `spacing`|
