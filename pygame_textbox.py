@@ -68,7 +68,7 @@ class Textbox:
                 self.screen.blit(self.font.render(self.value, 1, self.t_color), 
                                  (self.font_x_pos, self.font_y_pos))
                 
-    def tb_show(self):
+    def show(self):
         self.tb_box_draw()
         self.tb_text_blit()
             
@@ -142,34 +142,3 @@ class Textbox:
     
     def get_font_size(self):
         return self.font.size(self.name)
-
-
-pygame.init()
-screen = pygame.display.set_mode((800, 400), pygame.RESIZABLE)
-# Pygame now allows natively to enable key repeat:
-pygame.key.set_repeat(200, 25)
-test = Textbox(screen)
-
-game_on = True
-while game_on:
-    screen.fill((232, 228, 218))
-    events = pygame.event.get()
-    # User Inputs
-    test.textinput.update(events)
-
-    for event in events:
-        if event.type == pygame.QUIT:
-            game_on = False
-        if event.type == pygame.VIDEORESIZE:
-            # There's some code to add back window content here.
-            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-            test.update_screen(screen)
-            test.auto_font_size()
-
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            test.tb_click(event.pos)
-
-    # Show Textbox
-    test.tb_show()
-    # Update Screen
-    pygame.display.update()
