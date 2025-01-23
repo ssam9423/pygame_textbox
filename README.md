@@ -32,7 +32,7 @@ The other parameters are optional:
 The Textbox class has multiple functions:
 | Function Name               | Parameter Type                  | Description                                                           |
 |-----------------------------|---------------------------------|-----------------------------------------------------------------------|
-|`show(`event.pos`)`          | `tuple`                         |draws Textbox and appropriate text depending on if the Textbox is `on`.|
+|`show(event.pos)`            | `tuple`                         |draws Textbox and appropriate text depending on if the Textbox is `on`.|
 |`clear()`                    |                                 | this function clears the `value` of the Textbox.                      |
 |`tb_click(mouse_pos)`        | `tuple`                         | this function determines whether a Textbox should be `on` based on where the user clicks (inside or outside the Textbox). |
 |`get_value()`                |                                 | this function returns the `value` of the Textbox
