@@ -80,28 +80,24 @@ class Textbox:
         if self.textinput.value != '':
             self.value = self.textinput.value
 
-    def text_manager(self):
-        if self.on:
-            self.textinput.manager = self.tb_manager
-            # tb_manager holds prior textinput.value
-            if self.value == '':
-                self.textinput.value = ''
-        else:
-            self.textinput.manager = stop_type
-
     def tb_click(self, mouse_pos):
         # Click Inside Textbox
         if self.rect.collidepoint(mouse_pos):
             if not self.on:
                 self.textinput.value = self.value
+                self.textinput.manager = self.tb_manager
+                # tb_manager holds prior textinput.value
+                self.textinput.manager.left = self.value
                 self.on = True
         # Click Outside Textbox
         else:
             if self.on:
                 self.update_value()
+                self.textinput.manager = stop_type
+                # stop_type holds prior textinput.value
+                self.textinput.value = self.value
                 self.on = False
-        self.text_manager()
-
+        
     def get_value(self):
         self.update_value()
         return self.value
@@ -113,7 +109,7 @@ class Textbox:
             self.height = new_screen.get_size()[1] / self.h_factor
             self.spacing = self.height / self.spacing_factor
         self.rect = pygame.Rect(self.x_pos, self.y_pos, self.width, self.height)
-
+        
     def auto_font_size(self):
         curr_size = int(self.height)
         while curr_size > 1:
