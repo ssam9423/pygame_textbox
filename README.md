@@ -39,7 +39,6 @@ The Textbox class has multiple functions:
 |`update_screen(screen)`      | `pygame.surface.Surface`        | this funtion updates screen on which the Textbox is displayed on. If `static_size` is `False`, the Textbox's `width` and `height` are updated as well. |
 |`auto_font_size()`           |                                 | this function updates the font size so that the text on the Textbox fits within the Textbox according to the Textbox's `spacing`|
 |`update_spacing_factor(new_spacing_factor)`| `int`                           | this function takes in an integer as the new `spacing_factor` and updates the `spacing`|
-
 |`get_size_offset()`          |                                 | this function returns a pair of integers representing the offset from the Textbox's center |
 |`get_size()`                 |                                 | this function returns a pair of integers representing the `width` and `height` of the Textbox |
 |`get_font_size()`            |                                 | this function returns a pair or integers representing the width and height of the text on the Textbox |
