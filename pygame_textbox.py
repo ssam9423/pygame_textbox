@@ -1,4 +1,5 @@
-# Textbox Module for Pygame 
+"""Textbox Module for Pygame"""
+
 import pygame
 import pygame_textinput as pyti
 
@@ -6,13 +7,16 @@ import pygame_textinput as pyti
 stop_type = pyti.TextInputManager(validator=lambda input: False)
 
 class Textbox:
+    """Class representing a Textbox"""
+
     def __init__(self, screen, name='Textbox', x_pos=0, y_pos=0,
-                 cursor_width=4, b_radius=2, 
+                 cursor_width=4, b_radius=2,
                  bg_color=(196, 183, 164), t_color=(40, 54, 24),
                  empty_t_color=(232, 228, 218),
                  font_name='yugothicuisemibold', font_size=40,
                  width=600, height=55, spacing_factor=10,
                  static_size=False, value='', on=True):
+        """Initializes a Textbox onto a screen"""
         self.name = name
         self.screen = screen
         self.b_radius = b_radius
@@ -39,7 +43,7 @@ class Textbox:
 
         self.textinput = pyti.TextInputVisualizer()
         self.textinput.cursor_width = cursor_width
-        self.tb_manager = pyti.TextInputManager(validator=lambda input: 
+        self.tb_manager = pyti.TextInputManager(validator=lambda input:
                                    (self.font.render(input, 1, self.t_color).get_size()[0] +
                                     self.textinput.cursor_width < (self.width - 2*self.spacing)))
         self.textinput.manager = self.tb_manager
@@ -52,35 +56,41 @@ class Textbox:
         self.static_size = static_size
         self.value = value
         self.on = on
-    
+
     def tb_box_draw(self):
+        """Draws Rect representing the Textbox"""
         pygame.draw.rect(self.screen, self.bg_color, self.rect, border_radius=self.b_radius)
 
     def tb_text_blit(self):
+        """Blits typed text onto the Textbox"""
         if self.on:
-            self.screen.blit(self.textinput.surface, 
+            self.screen.blit(self.textinput.surface,
                              (self.font_x_pos, self.font_y_pos))
         else:
             if self.value == '' and self.textinput.value == '':
-                self.screen.blit(self.font.render(self.name, 1, self.empty_t_color), 
+                self.screen.blit(self.font.render(self.name, 1, self.empty_t_color),
                                  (self.font_x_pos, self.font_y_pos))
             else:
-                self.screen.blit(self.font.render(self.value, 1, self.t_color), 
+                self.screen.blit(self.font.render(self.value, 1, self.t_color),
                                  (self.font_x_pos, self.font_y_pos))
-                
+
     def show(self):
+        """Show Textbox"""
         self.tb_box_draw()
         self.tb_text_blit()
-            
+
     def clear(self):
+        """Clears typed text"""
         self.textinput.value = ''
         self.value = ''
 
     def update_value(self):
+        """Updates value in Textbox to typed text"""
         if self.textinput.value != '':
             self.value = self.textinput.value
 
     def tb_click(self, mouse_pos):
+        """Determines if user can type in Textbox based on click position"""
         # Click Inside Textbox
         if self.rect.collidepoint(mouse_pos):
             if not self.on:
@@ -97,20 +107,23 @@ class Textbox:
                 # stop_type holds prior textinput.value
                 self.textinput.value = self.value
                 self.on = False
-        
+
     def get_value(self):
+        """Returns the value in the textbox"""
         self.update_value()
         return self.value
-    
+
     def update_screen(self, new_screen):
+        """Takes in new screen and adjusts Textbox size based on screen size"""
         self.screen = new_screen
         if not self.static_size:
             self.width = new_screen.get_size()[0] / self.w_factor
             self.height = new_screen.get_size()[1] / self.h_factor
             self.spacing = self.height / self.spacing_factor
         self.rect = pygame.Rect(self.x_pos, self.y_pos, self.width, self.height)
-        
+
     def auto_font_size(self):
+        """Finds and sets largest font size where text still fits on the Textbox"""
         curr_size = int(self.height)
         while curr_size > 1:
             f_w, f_h = pygame.font.SysFont(self.font_name, curr_size).size(self.name)
@@ -122,19 +135,24 @@ class Textbox:
         self.font_size = curr_size
         self.font = pygame.font.SysFont(self.font_name, self.font_size)
         self.textinput.font_object = self.font
-        self.tb_manager = pyti.TextInputManager(validator=lambda input: 
+        self.tb_manager = pyti.TextInputManager(validator=lambda input:
                                    (self.font.render(input, 1, self.t_color).get_size()[0] +
                                     self.textinput.cursor_width < (self.width - 2*self.spacing)))
 
-    def update_spacing(self, new_spacing):
-        self.spacing_factor = new_spacing
-        self.spacing = self.height / new_spacing
+    def update_spacing(self, new_spacing_factor):
+        """Takes new spacing factor and adjusts width and height spacing"""
+        self.spacing_factor = new_spacing_factor
+        self.spacing = self.height / new_spacing_factor
 
     def get_size_offset(self):
+        """Returns x and y offset from middle of the Textbox"""
         return (int(self.width/2), int(self.height/2))
-    
+
     def get_size(self):
+        """Returns the width and height of the Textbox"""
         return (self.width, self.height)
-    
+
     def get_font_size(self):
-        return self.font.size(self.name)
+        """Returns the size of the text in the Textbox"""
+        self.update_value()
+        return self.font.size(self.value)
